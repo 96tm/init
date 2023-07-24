@@ -1,6 +1,6 @@
 import Counter from "../Counter/Counter"
 import heart from '../../shared/assets/icons/heart.svg'
-import './style.scss'
+import './App.scss'
 
 const App = () => {
   return (
