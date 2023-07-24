@@ -25,7 +25,17 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
       'sass-loader'
     ]
   }
+
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|svg|woff2|woff)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+      }
+    ]
+  }
+
   return [
-    tsLoader, cssLoader
+    tsLoader, cssLoader, fileLoader
   ]
 }
