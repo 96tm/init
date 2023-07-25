@@ -11,6 +11,9 @@
     "allowSyntheticDefaultImports": true,
     // "baseUrl": "."
   },
+  "include": [
+    "src"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
