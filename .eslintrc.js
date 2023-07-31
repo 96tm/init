@@ -2,35 +2,36 @@ module.exports = {
   root: true,
   overrides: [
     {
-      files: ["src/**/*.ts", "src/**/*.tsx"],
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
       env: {
         browser: true,
         es2021: true,
+        jest: true,
       },
       extends: [
-        "eslint:recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
+        'eslint:recommended',
+        'plugin:import/recommended',
+        'plugin:import/typescript',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
       ],
-      parser: "@typescript-eslint/parser",
+      parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: "./tsconfig.json",
+        project: './tsconfig.json',
         tsconfigRootDir: __dirname,
-        sourceType: "module",
+        sourceType: 'module',
       },
       settings: {
-        "import/resolver": {
+        'import/resolver': {
           typescript: true,
           node: true,
         },
       },
-      plugins: ["@typescript-eslint", "eslint-plugin-import"],
+      plugins: ['@typescript-eslint', 'eslint-plugin-import'],
       rules: {
-        "@typescript-eslint/lines-between-class-members": 0,
-        "react/react-in-jsx-scope": 0,
-        "import/no-named-as-default": 0,
+        '@typescript-eslint/lines-between-class-members': 0,
+        'react/react-in-jsx-scope': 0,
+        'import/no-named-as-default': 0,
       },
     },
   ],
