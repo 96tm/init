@@ -18,6 +18,6 @@ module.exports = {
     'node',
   ],
   moduleDirectories: ['node_modules'],
-  rootDir: '../../',
-  testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+  rootDir: '.',
+  testMatch: ['<rootDir>/**/*(*.)@(spec|test).[tj]s?(x)'],
 };
