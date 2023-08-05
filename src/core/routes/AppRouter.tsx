@@ -20,7 +20,6 @@ export const AppRedirect = ({ path = '/' }: IRedirect) => {
 
 const allRoutes: RouteObject = {
   path: AllRoutes.root.path,
-  element: <></>,
   children: [
     { index: true, element: <Navigate to={AllRoutes.login.path} replace /> },
     { path: AllRoutes.login.path, element: <LoginPage /> },
