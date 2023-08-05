@@ -1,17 +1,12 @@
-import Counter from '../Counter/Counter';
-import heart from '../../shared/assets/icons/heart.svg';
-import './App.scss';
+import { HashRouter } from 'react-router-dom';
+import { AppRouter } from '../../core/routes/AppRouter';
 
-const App = () => {
+function App() {
   return (
-    <div className="wrapperApp">
-      <h3 className="heading">
-        <span>Counter</span>
-        <img src={heart} alt="" />
-      </h3>
-      <Counter />
-    </div>
+    <HashRouter>
+      <AppRouter />
+    </HashRouter>
   );
-};
+}
 
 export default App;
