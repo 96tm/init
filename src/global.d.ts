@@ -15,3 +15,14 @@ declare module '*.svg' {
   const content: any;
   export default content;
 }
+
+declare module NodeJS {
+  interface ProcessEnv {
+    NODE_ENV: 'development' | 'production';
+    API_URL: string;
+    API_AUTH_URL: string;
+    PROJECT_KEY: string;
+    CLIENT_ID: string;
+    CLIENT_SECRET: string;
+  }
+}

@@ -1,19 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { RootState } from '../store/rootReducer';
+import { ListResponse } from './types';
 
-export interface ICustomErrorDto {
-  errors: [
-    {
-      detail: string;
-      code: string;
-      status: string;
-    },
-  ];
+interface ProductsQueryParams {
+  where?: string;
 }
 
-export const BASE_URL =
-  'https://api.australia-southeast1.gcp.commercetools.com';
+interface Product {
+  id: string;
+  key: string;
+}
+
+interface ProductsResponse extends ListResponse<Product> {}
+
+export const BASE_URL = `${process.env.API_URL}/${process.env.PROJECT_KEY}`;
 
 export const api = createApi({
   reducerPath: 'baseApi',
@@ -27,20 +28,16 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User'],
+  tagTypes: ['Products'],
   endpoints: (builder) => ({
-    userRegistration: builder.mutation<
-      unknown,
-      { email: string; password: string }
-    >({
-      query: (body) => ({
-        url: '/registration',
-        method: 'POST',
-        body,
+    products: builder.query<ProductsResponse, { params: ProductsQueryParams }>({
+      query: ({ params }) => ({
+        url: '/products',
+        params,
       }),
-      invalidatesTags: ['User'],
+      providesTags: ['Products'],
     }),
   }),
 });
 
-export const { useUserRegistrationMutation } = api;
+export const { useProductsQuery } = api;

@@ -12,6 +12,7 @@ import { rtkQueryErrorLogger } from './middleware/rtkQueryErrorLogger';
 import { rootReducer, RootState } from './rootReducer';
 
 import { api } from '../api/baseApi';
+import { api as authApi } from '../api/authApi';
 
 const migrations = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,7 +38,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat([api.middleware, rtkQueryErrorLogger]),
+    }).concat([api.middleware, authApi.middleware, rtkQueryErrorLogger]),
   devTools: process.env.NODE_ENV !== 'production',
 });
 
