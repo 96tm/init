@@ -8,5 +8,14 @@
   ],
   "[json]": {
     "editor.formatOnSave": false
-  }
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": true
+  },
+  "eslint.options": {
+    "overrideConfigFile": "config/eslint/.eslintrc.js"
+  },
+  "eslint.lintTask.options": "--config config/eslint/.eslintrc.js --ignore-path config/eslint/.eslintignore src",
+  "stylelint.configFile": "config/stylelint/.stylelintrc.js"
 }
