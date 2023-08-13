@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import webpack from "webpack"
 import { BuildOptions } from "./types/config"
+import path from "path"
 
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
   const tsLoader = {
@@ -15,12 +16,11 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     use: {
       loader: 'babel-loader',
       options: {
-        presets: [
-          ['@babel/preset-env', { targets: "defaults" }]
-        ]
-      }
-    }
-  }
+        configFile: path.resolve('config', 'babel', 'babel.config.json'),
+        presets: [['@babel/preset-env', { targets: 'defaults' }]],
+      },
+    },
+  };
 
   const cssLoader = {
     test: /\.s[ac]ss$/i,
@@ -41,11 +41,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
 
   const fileLoader = {
     test: /\.(png|jpe?g|gif|svg|woff2|woff)$/i,
-    use: [
-      {
-        loader: 'file-loader',
-      }
-    ]
+    type: 'asset/resource'
   }
 
   return [

@@ -15,3 +15,9 @@ declare module '*.svg' {
   const content: any;
   export default content;
 }
+
+declare module NodeJS {
+  interface ProcessEnv {
+    NODE_ENV: 'development' | 'production';
+  }
+}

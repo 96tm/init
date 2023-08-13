@@ -1,0 +1,9 @@
+{
+  "src/**/*.+(js|mjs|cjs|jsx|mjsx|ts|mts|cts|tsx|mtsx)": [
+    "npm run prettier:fix",
+    "npm run lint:fix"
+  ],
+  "*.+(css|scss)": [
+    "npm run lint:style:fix"
+  ]
+}
