@@ -2,36 +2,38 @@ import fetch from 'node-fetch';
 import {
   ClientBuilder,
 
-  // Import middlewares
-  type AuthMiddlewareOptions, // Required for auth
-  type HttpMiddlewareOptions, // Required for sending HTTP requests
+  type AuthMiddlewareOptions, 
+  type HttpMiddlewareOptions, 
 } from '@commercetools/sdk-client-v2';
+import {
+  createApiBuilderFromCtpClient,
+} from '@commercetools/platform-sdk';
 
-export const projectKey = 'test-project-30-07-2023';
-const scopes = ['manage_project:test-project-30-07-2023'];
+const projectKey = process.env.REACT_APP_PROJECT_KEY;
+const scopes = [process.env.REACT_APP_SCOPES];
 
-// Configure authMiddlewareOptions
 const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: 'https://auth.australia-southeast1.gcp.commercetools.com',
-  projectKey: projectKey,
+  host: process.env.REACT_APP_AUTH_URL,
+  projectKey: process.env.REACT_APP_PROJECT_KEY,
   credentials: {
-    clientId: '7XD6gf1nNQvOiqzF7qm0bCC3',
-    clientSecret: 'ISuP2vvqalkB1eTY-Jnq364KuZRuMveR',
+    clientId: process.env.REACT_APP_CLIENT_ID,
+    clientSecret: process.env.REACT_APP_CLIENT_SECRET,
   },
   scopes,
   fetch,
 };
 
-// Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
-  host: 'https://api.australia-southeast1.gcp.commercetools.com',
+  host: process.env.REACT_APP_API_URL,
   fetch,
 };
 
-// Export the ClientBuilder
 export const ctpClient = new ClientBuilder()
-  .withProjectKey(projectKey) // .withProjectKey() is not required if the projectKey is included in authMiddlewareOptions
+  .withProjectKey(projectKey) 
   .withClientCredentialsFlow(authMiddlewareOptions)
   .withHttpMiddleware(httpMiddlewareOptions)
-  .withLoggerMiddleware() // Include middleware for logging
+  .withLoggerMiddleware() 
   .build();
+
+export const apiRoot = createApiBuilderFromCtpClient(ctpClient)
+  .withProjectKey({ projectKey: process.env.REACT_APP_PROJECT_KEY });
