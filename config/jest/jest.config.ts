@@ -17,7 +17,16 @@ module.exports = {
     'json',
     'node',
   ],
-  moduleDirectories: ['node_modules'],
+  transform: {
+    '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
+  },
+  moduleDirectories: ['node_modules', __dirname],
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      __dirname + '/__mocks__/file-mock.ts',
+    '\\.(s?css|less)$': __dirname + '/__mocks__/style-mock.ts',
+  },
   rootDir: '../../',
-  testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+  roots: ['<rootDir>', __dirname],
+  testMatch: ['<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)'],
 };
